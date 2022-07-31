@@ -28,14 +28,13 @@ b0 <- 0.41536/(1-rhohat)
 # 广义最小二乘法
 gy <- log(y)
 gx <- log(x)
-gy[1] = gy[1] * sqrt(1-rho^2)
-gx[1] = gx[1] * sqrt(1-rho^2)
 newy <- gy[2:length(gy)] - rho*gy[1:length(gy)-1]
 newx <- gx[2:length(gx)] - rho*gx[1:length(gx)-1]
+newy <- c(gy[1] * sqrt(1-rho^2), newy)
+newx <- c(gx[1] * sqrt(1-rho^2), newx)
 lm.4 <- lm(newy~newx)
 summary(lm.4)
-b0 <- -0.20322/(1-rho)
-b0 <- 0.27559/(1-rho)
+b0 <- -0.22774/(1-rho)
 bgtest(lm.4, order=1)
 
 # (3)
