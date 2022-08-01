@@ -1,0 +1,22 @@
+setwd("D:\\undergraduate\\研\\432统计学\\计量经济学 孙敬水 PPT\\习题R代码")
+X <- read.table("6.7data.txt", header = TRUE)
+# (1)
+lm.1 <- lm(y~x1+x2+x3+x4+x5, data = X)
+summary(lm.1)
+
+# (2)
+Y <- X[,3:7]
+cor(Y)
+
+# (3)
+lm.step1 <- step(lm.1)
+summary(lm.step1)
+lm.2 <- lm(y~x1+x2+x3+x5, data = X)
+lm.step2 <- step(lm.2)
+summary(lm.step2)
+lm.3 <- lm(y~x1+x2+x3, data = X)
+lm.step3 <- step(lm.3)
+lm.4 <- lm(y~x1+x3, data = X)
+summary(lm.4)
+lm.5 <- lm(y~x1+x3+0, data = X)
+summary(lm.5)
