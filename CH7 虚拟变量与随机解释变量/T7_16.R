@@ -1,0 +1,5 @@
+setwd("D:\\undergraduate\\研\\432统计学\\计量经济学 孙敬水 PPT\\习题R代码")
+X <- read.table("7.16data.txt", header = TRUE)
+library(ivreg)
+lm.1 <- ivreg(T~GDP|Z, data = X)
+summary(lm.1)

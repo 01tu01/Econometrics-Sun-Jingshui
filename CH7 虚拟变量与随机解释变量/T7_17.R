@@ -1,0 +1,21 @@
+setwd("D:\\undergraduate\\研\\432统计学\\计量经济学 孙敬水 PPT\\习题R代码")
+X <- read.table("7.17data.txt", header = TRUE)
+# (1)(2) Probit
+lm.1 <- glm(Y~SCORE+D1, family=binomial(link=probit), data = X)
+lm.1null <- glm(Y~1, family=binomial(link=probit), data = X)
+summary(lm.1)
+LR <- 2*(logLik(lm.1) - logLik(lm.1null))
+qchisq(0.95, df=2)
+R2 <- 1 - logLik(lm.1)/logLik(lm.1null)
+pre1 <- predict(lm.1, data.frame(SCORE=360, D1=1))
+pnorm(pre1)
+
+# (1)(2) Logit
+lm.2 <- glm(Y~SCORE+D1,family=binomial(link=logit), data = X)
+lm.2null <- glm(Y~1, family=binomial(link=logit), data = X)
+summary(lm.2)
+LR <- 2*(logLik(lm.2) - logLik(lm.2null))
+qchisq(0.95, df=2)
+R2 <- 1 - logLik(lm.2)/logLik(lm.2null)
+pre2 <- predict(lm.2, data.frame(SCORE=360, D1=1))
+pcauchy(pre2)
